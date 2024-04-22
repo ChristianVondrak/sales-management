@@ -1,0 +1,12 @@
+version: '3'
+services:
+  ppl-erp:
+    image: webdevops/php-nginx:8.3
+    container_name: ppl-erp
+    working_dir: /app
+    volumes:
+      - ./:/app
+      - ~/.ssh:/home/application/.ssh:ro
+      - ./docker/vhost.conf:/opt/docker/etc/nginx/vhost.conf
+    ports:
+      - "8299:80"
