@@ -16,7 +16,7 @@ services:
       - "8299:80"
 
   ppl-erp-db:
-    image: mysql:5.7
+    image: mysql:latest
     container_name: ppl-erp-db
     volumes:
       - ./docker/entrypoint:/docker-entrypoint-initdb.d
