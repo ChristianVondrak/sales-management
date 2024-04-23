@@ -2,11 +2,30 @@ version: '3'
 services:
   ppl-erp:
     image: webdevops/php-nginx:8.3
+    depends_on:
+      - ppl-erp-db
     container_name: ppl-erp
     working_dir: /app
     volumes:
       - ./:/app
       - ~/.ssh:/home/application/.ssh:ro
       - ./docker/vhost.conf:/opt/docker/etc/nginx/vhost.conf
+    environment:
+      - DB_URL=mysql://ppl_erp:secret@ppl-erp-db/ppl_erp_db
     ports:
       - "8299:80"
+
+  ppl-erp-db:
+    image: mysql:5.7
+    container_name: ppl-erp-db
+    volumes:
+      - ./docker/entrypoint:/docker-entrypoint-initdb.d
+      - ./docker/db_data:/var/lib/mysql
+    command: mysqld --sql_mode="NO_ENGINE_SUBSTITUTION"
+    ports:
+      - "8207:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: ppl_erp_db
+      MYSQL_USER: ppl_erp
+      MYSQL_PASSWORD: secret
