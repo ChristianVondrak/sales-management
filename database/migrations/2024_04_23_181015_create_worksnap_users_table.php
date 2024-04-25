@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('users_ws', function (Blueprint $table) {
+        Schema::create('worksnap_users', function (Blueprint $table) {
             $table->id();
             $table->string('login');
             $table->string('first_name');
@@ -28,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('users_ws');
+        Schema::dropIfExists('worksnap_users');
     }
 };

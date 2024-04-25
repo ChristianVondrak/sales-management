@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('reports', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained(
-                table: 'users_ws', indexName: 'user_report_id'
+                table: 'worksnap_users', indexName: 'user_report_id'
             );
             $table->foreignId('project_id')->constrained();
             $table->integer('from_timestamp')->nullable();

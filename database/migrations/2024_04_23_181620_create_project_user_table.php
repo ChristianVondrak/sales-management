@@ -11,10 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('users_projects', function (Blueprint $table) {
+        Schema::create('project_user', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained(
-                table: 'users_ws', indexName: 'user_project_id'
+                table: 'worksnap_users', indexName: 'project_user_id'
             );
             $table->foreignId('project_id')->constrained();
             $table->float('hourly_rate');
@@ -27,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('users_projects');
+        Schema::dropIfExists('project_user');
     }
 };

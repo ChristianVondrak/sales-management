@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('timmings', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained(
-                table: 'users_ws', indexName: 'user_timming_id'
+                table: 'worksnap_users', indexName: 'user_timming_id'
             );
             $table->foreignId('project_id')->constrained();
             $table->integer('logged_timestamp')->nullable();
